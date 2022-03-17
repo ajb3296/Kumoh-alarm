@@ -8,7 +8,7 @@ async def broadcast(bot):
     latest_data_id = seBoardDB.get_latest_data_id()
     while True:
         now_latest_data_id = seBoardDB.get_latest_data_id()
-        if latest_data_id != latest_data_id:
+        if latest_data_id != now_latest_data_id:
             for num in range(latest_data_id + 1, now_latest_data_id + 1):
                 # get post
                 post = seBoardDB.get_database_from_id(num)
@@ -37,10 +37,10 @@ async def send_msg(bot, post):
         for channel_id in channel_id_list:
             target_channel = bot.get_channel(channel_id)
             try:
-                embed=discord.Embed(title=post[1], description=f"", color=color)
-                embed.add_field(name="글쓴이", value=post[2], inline=True)
+                embed=discord.Embed(title=post[2], description=f"", color=color)
+                embed.add_field(name="글쓴이", value=post[3], inline=True)
                 embed.add_field(name="중요도", value=important, inline=True)
-                embed.add_field(name="링크", value=f"{se_board_link}freeboard{post[0]}", inline=False)
+                embed.add_field(name="링크", value=f"{se_board_link}freeboard{post[1]}", inline=False)
                 embed.set_footer(text=BOT_NAME_TAG_VER)
                 await target_channel.send(embed=embed)
             except:

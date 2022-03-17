@@ -2,15 +2,15 @@ import re
 import asyncio
 from bs4 import BeautifulSoup
 
-#from bot.utils.crawler import getText
-#from bot.utils.database import seBoardDB
-#from bot import se_board_link, LOGGER
+from bot.utils.crawler import getText
+from bot.utils.database import seBoardDB
+from bot import se_board_link, LOGGER
 
-def read_se():
+async def read_se():
     while True:
         header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'}
-        #result = await getText(se_board_link, header)
-        result = requests.get("http://se.kumoh.ac.kr/").text
+        result = await getText(se_board_link, header)
+        #result = requests.get(se_board_link)
         parse = BeautifulSoup(result, 'lxml')
         trs = parse.find("table", {"summary" : "List of Articles"}).find("tbody").find_all("tr")
         tr_list = []
@@ -23,13 +23,9 @@ def read_se():
                 pass
         
         tr_list.sort(key=lambda x:x[0])
-        print(tr_list)
-        break
 
-        #LOGGER.info(tr_list)
-        
-        #seBoardDB.set_database(tr_list)
-        #await asyncio.sleep(10)
+        seBoardDB.set_database(tr_list)
+        await asyncio.sleep(10)
 
 if __name__ == "__main__":
     import requests
