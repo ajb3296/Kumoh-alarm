@@ -7,7 +7,7 @@ class seBoardDB:
         # Create table if it doesn't exist
         conn = sqlite3.connect(se_db_path, isolation_level=None)
         c = conn.cursor()
-        c.execute(f"CREATE TABLE IF NOT EXISTS seboard (id integer PRIMARY KEY, title text, author int)")
+        c.execute(f"CREATE TABLE IF NOT EXISTS seboard (id integer PRIMARY KEY, title text, author text)")
 
         latest_data_id = await seBoardDB.get_latest_data_id()
         if latest_data_id is None:
@@ -18,7 +18,7 @@ class seBoardDB:
             if tr[0] > latest_data_id:
                 c.execute(f"INSERT INTO seboard VALUES{tr}")
         conn.close()
-    
+
     async def get_database():
         # 모든 데이터베이스 가져오기
         conn = sqlite3.connect(se_db_path, isolation_level=None)
