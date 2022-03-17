@@ -26,6 +26,7 @@ BOT_NAME         = Config.BOT_NAME
 BOT_TAG          = Config.BOT_TAG
 BOT_ID           = Config.BOT_ID
 color_code       = Config.color_code
+se_board_link    = Config.se_board_link
 se_db_path       = Config.se_db_path
 channel_db_path  = Config.channel_db_path
 

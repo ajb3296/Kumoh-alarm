@@ -2,7 +2,7 @@ import discord
 import asyncio
 
 from bot.utils.database import *
-from bot import BOT_NAME_TAG_VER
+from bot import BOT_NAME_TAG_VER, se_board_link
 
 async def broadcast(bot):
     latest_data_id = seBoardDB.get_latest_data_id()
@@ -39,7 +39,7 @@ async def send_msg(bot, post):
                 embed=discord.Embed(title=post[1], description=f"", color=color)
                 embed.add_field(name="글쓴이", value=post[2], inline=True)
                 embed.add_field(name="중요도", value=important, inline=True)
-                embed.add_field(name="링크", value=f"http://se.kumoh.ac.kr/freeboard{post[0]}", inline=False)
+                embed.add_field(name="링크", value=f"{se_board_link}freeboard{post[0]}", inline=False)
                 embed.set_footer(text=BOT_NAME_TAG_VER)
                 await target_channel.send(embed=embed)
             except:

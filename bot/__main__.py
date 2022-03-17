@@ -2,7 +2,8 @@ import discord
 import asyncio
 
 from discord.ext import commands
-from bot.background.read_se import *
+from bot.background.read_se import read_se
+from bot.background.broadcast import broadcast
 
 from bot import LOGGER, TOKEN, EXTENSIONS, BOT_NAME_TAG_VER
 
@@ -40,6 +41,7 @@ class Bot (commands.Bot) :
         )
         bot.loop.create_task(status_task())
         bot.loop.create_task(read_se())
+        bot.loop.create_task(broadcast(bot))
 
     async def on_message (self, message) :
         if message.author.bot:
