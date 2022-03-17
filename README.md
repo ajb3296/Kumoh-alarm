@@ -16,5 +16,5 @@ class Development(Config):
     BOT_TAG = "#봇태그"
     BOT_ID = 봇아이디
 ```
-sample_config.py를 참고 하여 만들면 된다.
+sample_config.py를 참고 하여 만들면 된다.<br>
 3. `python3 -m bot` 명령어로 실행한다.
