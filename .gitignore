@@ -1,7 +1,7 @@
 .DS_Store
 config.py
 test.py
-.db
+*.db
 
 
 # Byte-compiled / optimized / DLL files

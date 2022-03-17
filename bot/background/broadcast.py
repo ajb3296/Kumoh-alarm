@@ -2,16 +2,17 @@ import discord
 import asyncio
 
 from bot.utils.database import *
-from bot import BOT_NAME_TAG_VER, se_board_link
+from bot import LOGGER, BOT_NAME_TAG_VER, se_board_link
 
 async def broadcast(bot):
-    latest_data_id = await seBoardDB.get_latest_data_id()
+    latest_data_id = seBoardDB.get_latest_data_id()
     while True:
-        now_latest_data_id = await seBoardDB.get_latest_data_id()
+        now_latest_data_id = seBoardDB.get_latest_data_id()
         if latest_data_id != latest_data_id:
             for num in range(latest_data_id + 1, now_latest_data_id + 1):
                 # get post
-                post = await seBoardDB.get_database_from_id(num)
+                post = seBoardDB.get_database_from_id(num)
+                LOGGER.info(f"Send msg : {post}")
                 if post is not None:
                     send_msg(bot, post)
 
@@ -31,7 +32,7 @@ async def send_msg(bot, post):
         # 초록색
         color = 0x008000
         important = "보통"
-    channel_id_list = await channelDataDB.get_on_channel()
+    channel_id_list = channelDataDB.get_on_channel()
     if channel_id_list != None:
         for channel_id in channel_id_list:
             target_channel = bot.get_channel(channel_id)
