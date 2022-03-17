@@ -9,7 +9,7 @@ class seBoardDB:
         c = conn.cursor()
         c.execute(f"CREATE TABLE IF NOT EXISTS seboard (id integer PRIMARY KEY, title text, author int)")
 
-        latest_data_id = seBoardDB.get_latest_data_id()
+        latest_data_id = await seBoardDB.get_latest_data_id()
         if latest_data_id is None:
             latest_data_id = tr_list[0][0]
 
