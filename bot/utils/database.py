@@ -47,7 +47,7 @@ class seBoardDB:
         conn = sqlite3.connect(se_db_path, isolation_level=None)
         c = conn.cursor()
         try:
-            c.execute("SELECT * FROM seboard ORDER BY id DESC LIMIT 1;")
+            c.execute("SELECT * FROM seboard ORDER BY id DESC LIMIT 1")
         except sqlite3.OperationalError:
             conn.close()
             return None
