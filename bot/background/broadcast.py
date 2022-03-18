@@ -5,8 +5,8 @@ from bot.utils.database import *
 from bot import LOGGER, BOT_NAME_TAG_VER, se_board_link
 
 async def broadcast(bot):
+    await asyncio.sleep(5)
     latest_data_id = seBoardDB.get_latest_data_id()
-    latest_data_id = 38
     while True:
         now_latest_data_id = seBoardDB.get_latest_data_id()
         if latest_data_id != now_latest_data_id:
