@@ -21,11 +21,11 @@ async def broadcast(bot):
         await asyncio.sleep(10)
 
 async def send_msg(bot, post):
-    if post[2] in ["이한나[조교]", "오득환", "김선명", "이현아", "김시관", "신윤식", "이해연"]:
+    if post[3] in ["이한나[조교]", "오득환", "김선명", "이현아", "김시관", "신윤식", "이해연"]:
         # 빨간색
         color = 0xff0000
         important = ":red_circle: 매우 중요"
-    elif post[2] in ["학생회"]:
+    elif post[3] in ["학생회"]:
         # 오렌지색
         color = 0xff7f00
         important = ":orange_circle: 중요"
