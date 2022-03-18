@@ -4,6 +4,7 @@ import asyncio
 from discord.ext import commands
 from bot.background.read_se import read_se
 from bot.background.broadcast import broadcast
+from bot.utils.database import channelDataDB
 
 from bot import LOGGER, TOKEN, EXTENSIONS, BOT_NAME_TAG_VER
 
@@ -15,8 +16,9 @@ async def status_task():
                 status = discord.Status.online,
             )
             await asyncio.sleep(10)
+            channel_list = channelDataDB.get_on_channel()
             await bot.change_presence(
-                activity = discord.Game (f"{len(bot.guilds)}개의 서버에서 알림을 보내주고 있어요!"),
+                activity = discord.Game (f"{len(channel_list)}개의 채널에 알림을 보내주고 있어요!"),
                 status = discord.Status.online,
             )
             await asyncio.sleep(10)
