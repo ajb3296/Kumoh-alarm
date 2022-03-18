@@ -21,9 +21,9 @@ class AlarmSet (commands.Cog) :
         channelDataDB.channel_status_set(ctx.channel.id, onoff)
 
         if onoff == "on":
-            msg_title = ":green_circle: 이 채널에서 알람을 켰습니다"+onoff
+            msg_title = ":green_circle: 이 채널에서 알람을 켰습니다"
         else:
-            msg_title = ":red_circle: 이 채널에서 알람을 껐습니다"+onoff
+            msg_title = ":red_circle: 이 채널에서 알람을 껐습니다"
         embed=discord.Embed(title="알람 설정", description=msg_title, color=color_code)
 
         embed.set_footer(text=BOT_NAME_TAG_VER)
