@@ -41,7 +41,7 @@ async def send_msg(bot, post):
                 embed=discord.Embed(title=post[2], description=f"", color=color)
                 embed.add_field(name="글쓴이", value=post[3], inline=True)
                 embed.add_field(name="중요도", value=important, inline=True)
-                embed.add_field(name="링크", value=f"{se_board_link}freeboard{post[1]}", inline=False)
+                embed.add_field(name="링크", value=f"{se_board_link}freeboard/{post[1]}", inline=False)
                 embed.set_footer(text=BOT_NAME_TAG_VER)
                 await target_channel.send(embed=embed)
             except:
