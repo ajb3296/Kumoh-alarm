@@ -54,13 +54,12 @@ class seBoardDB:
         return temp
 
     def get_latest_data_id():
-        # 마지막 행 리턴
-        conn = sqlite3.connect(se_db_path, isolation_level=None)
-        c = conn.cursor()
-        c.execute(f"SELECT * FROM seboard ORDER BY id DESC LIMIT 1;")
-        temp = c.fetchone()
-        conn.close()
-        return temp[0]
+        # 마지막 행 id 리턴
+        all_db = seBoardDB.get_database()
+        if all_db is None:
+            return None
+        else:
+            return all_db[-1][0]
 
 class channelDataDB:
     def channel_status_set(id: int, status: str):
@@ -68,22 +67,25 @@ class channelDataDB:
         conn = sqlite3.connect(channel_db_path, isolation_level=None)
         c = conn.cursor()
         c.execute(f"CREATE TABLE IF NOT EXISTS broadcastChannel (id integer PRIMARY KEY, onoff text)")
-        c.execute("SELECT * FROM userdata WHERE id=:id", {"id": id})
-        a = c.fetchone()
+        try:
+            c.execute("SELECT * FROM broadcastChannel WHERE id=:id", {"id": id})
+            a = c.fetchone()
+        except:
+            a = None
         if a is None:
             # add channel set
-            c.execute(f"INSERT INTO channel VALUES('{id}', '{status}')")
+            c.execute(f"INSERT INTO broadcastChannel VALUES('{id}', '{status}')")
         else:
             # modify channel set
-            c.execute("UPDATE channel SET onoff=:onoff WHERE id=:id", {"onoff": status, 'id': id})
+            c.execute("UPDATE broadcastChannel SET onoff=:onoff WHERE id=:id", {"onoff": status, 'id': id})
         conn.close()
     
     def get_on_channel():
         # 모든 알람설정 되어있는 채널 가져오기
-        conn = sqlite3.connect(se_db_path, isolation_level=None)
+        conn = sqlite3.connect(channel_db_path, isolation_level=None)
         c = conn.cursor()
         try:
-            c.execute(f"SELECT * FROM channel ORDER BY id")
+            c.execute(f"SELECT * FROM broadcastChannel ORDER BY id")
         except sqlite3.OperationalError:
             return None
         temp = c.fetchall()
@@ -91,7 +93,7 @@ class channelDataDB:
 
         on_channel = []
         for channel in temp:
-            if temp[1] == "on":
+            if channel[1] == "on":
                 on_channel.append(channel[0])
         return on_channel
 
