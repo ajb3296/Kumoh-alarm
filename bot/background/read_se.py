@@ -25,7 +25,7 @@ async def read_se():
         tr_list.sort(key=lambda x:x[0])
 
         seBoardDB.set_database(tr_list)
-        await asyncio.sleep(10)
+        await asyncio.sleep(60)
 
 if __name__ == "__main__":
     import requests
