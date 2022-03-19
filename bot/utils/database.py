@@ -100,5 +100,5 @@ class channelDataDB:
 if __name__ == "__main__":
     se_db_path = "se_board.db"
     channel_db_path = "channel.db"
-    post_list = [(82179, '각 학년 과대표 카카오톡 아이디 입니다. ', '12대 학생회장'), (82180, '[학생회] 2022년도 학과 학년 단톡방 개설 공지', '학생회')]
+    post_list = [(80000, '제목1', '글쓴이1'), (80001, '제목2', '글쓴이2')]
     seBoardDB.set_database(post_list)
