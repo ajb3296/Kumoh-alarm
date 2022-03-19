@@ -1,12 +1,15 @@
+import os
 import discord
 import asyncio
 
 from bot.utils.database import *
-from bot import LOGGER, BOT_NAME_TAG_VER, se_board_link
+from bot import LOGGER, BOT_NAME_TAG_VER, se_board_link, se_db_path
 
 async def broadcast(bot):
-    await asyncio.sleep(5)
+    if not os.path.exists(se_db_path):
+        await asyncio.sleep(5)
     latest_data_id = seBoardDB.get_latest_data_id()
+    await asyncio.sleep(5)
     while True:
         now_latest_data_id = seBoardDB.get_latest_data_id()
         if latest_data_id != now_latest_data_id:

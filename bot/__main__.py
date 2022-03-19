@@ -42,8 +42,8 @@ class Bot (commands.Bot) :
             status = discord.Status.online,
         )
         bot.loop.create_task(status_task())
-        bot.loop.create_task(read_se())
         bot.loop.create_task(broadcast(bot))
+        bot.loop.create_task(read_se())
 
     async def on_message (self, message) :
         if message.author.bot:
