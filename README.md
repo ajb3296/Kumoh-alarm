@@ -6,6 +6,10 @@
 
 https://discord.com/api/oauth2/authorize?client_id=950607518252556328&permissions=414464789568&scope=bot%20applications.commands
 
+### 디스코드 서버
+
+https://discord.gg/mcvEwsg4AB
+
 ## How to install
 1. bot 폴더 안에 config.py 파일을 만든다.
 2. config.py 파일을 아래와 같이 작성한다.
