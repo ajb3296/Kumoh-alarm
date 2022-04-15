@@ -36,6 +36,7 @@ async def send_msg(bot, post):
         # 초록색
         color = 0x008000
         important = ":green_circle: 보통"
+
     channel_id_list = channelDataDB.get_on_channel()
     if channel_id_list != None:
         for channel_id in channel_id_list:

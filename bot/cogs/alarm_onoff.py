@@ -13,7 +13,7 @@ class AlarmSet (commands.Cog) :
     async def alarmset (self, ctx, onoff : Option(str, "이 채널에서의 알람을 켜거나 끕니다", choices=["ON", "OFF"])) :
         """ 채널에서 SE Board 알림을 켜거나 끕니다 """
         if ctx.author.id not in OWNERS:
-            if not ctx.message.author.guild_permissions.manage_messages:
+            if not ctx.author.guild_permissions.manage_messages:
                 embed=discord.Embed(title="이 명령어는 서버의 관리자만이 사용할 수 있습니다!")
                 embed.set_footer(text=BOT_NAME_TAG_VER)
                 return await ctx.respond(embed=embed)
