@@ -17,7 +17,11 @@ async def broadcast(bot):
             for num in range(latest_data_id + 1, now_latest_data_id + 1):
                 # get post
                 post = seBoardDB.get_database_from_id(num)
-                preview = await get_preview(post[1])
+                try:
+                    preview = await get_preview(post[1])
+                except:
+                    # 글 수정/삭제되었을 경우 오류 예외처리
+                    preview = False
                 if post is not None:
                     LOGGER.info(f"Send msg : {post}")
                     await send_msg(bot, post, preview)
@@ -53,7 +57,8 @@ async def send_msg(bot, post, preview):
                 embed.add_field(name="글쓴이", value=post[3], inline=True)
                 embed.add_field(name="중요도", value=important, inline=True)
                 embed.add_field(name="링크", value=f"{se_board_link}freeboard/{post[1]}", inline=False)
-                embed.add_field(name="미리보기", value=preview, inline=False)
+                if preview is not False:
+                    embed.add_field(name="미리보기", value=preview, inline=False)
                 embed.set_footer(text=BOT_NAME_TAG_VER)
                 await target_channel.send(embed=embed)
             except:
