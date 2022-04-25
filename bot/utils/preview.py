@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 
-from bot import LOGGER, se_board_link
+from bot import se_board_link
 from bot.utils.crawler import getText
 
 async def get_preview(post_id):
@@ -8,7 +8,14 @@ async def get_preview(post_id):
     link = f"{se_board_link}freeboard/{post_id}"
     html = await getText(link, header)
     parse = BeautifulSoup(html, 'lxml')
-    text_list = parse.find('div', {'class': 'read_body'}).find_all('p')
+    post = parse.find('div', {'class': 'read_body'})
+    text_list = post.find_all('p')
+
+    # Set img preview
+    try:
+        img_preview = post.find('img')['src']
+    except:
+        img_preview = None
 
     text = ''
     for i in text_list:
@@ -19,4 +26,4 @@ async def get_preview(post_id):
     else:
         result = text[:100] + f'...[더보기]({link})'
     
-    return result
+    return img_preview, result

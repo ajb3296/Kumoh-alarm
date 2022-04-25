@@ -18,7 +18,7 @@ async def broadcast(bot):
                 # get post
                 post = seBoardDB.get_database_from_id(num)
                 try:
-                    preview = await get_preview(post[1])
+                    img_preview, preview = await get_preview(post[1])
                 except:
                     # 글 수정/삭제되었을 경우 오류 예외처리
                     preview = False
@@ -29,7 +29,7 @@ async def broadcast(bot):
             latest_data_id = now_latest_data_id
         await asyncio.sleep(60)
 
-async def send_msg(bot, post, preview):
+async def send_msg(bot, post, preview, img_preview):
     if post[3] in ["오득환", "김선명", "이현아", "김시관", "신윤식", "이해연", "김병만"]:
         # 빨간색
         color = 0xff0000
@@ -59,6 +59,8 @@ async def send_msg(bot, post, preview):
                 embed.add_field(name="링크", value=f"{se_board_link}freeboard/{post[1]}", inline=False)
                 if preview is not False:
                     embed.add_field(name="미리보기", value=preview, inline=False)
+                if img_preview is not None:
+                    embed.set_image(url=img_preview)
                 embed.set_footer(text=BOT_NAME_TAG_VER)
                 await target_channel.send(embed=embed)
             except:
