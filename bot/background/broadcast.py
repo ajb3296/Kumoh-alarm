@@ -24,7 +24,7 @@ async def broadcast(bot):
                     preview = False
                 if post is not None:
                     LOGGER.info(f"Send msg : {post}")
-                    await send_msg(bot, post, preview)
+                    await send_msg(bot, post, preview, img_preview)
 
             latest_data_id = now_latest_data_id
         await asyncio.sleep(60)
