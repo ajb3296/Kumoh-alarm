@@ -63,5 +63,5 @@ async def send_msg(bot, post, preview, img_preview):
                     embed.set_image(url=img_preview)
                 embed.set_footer(text=BOT_NAME_TAG_VER)
                 await target_channel.send(embed=embed)
-            except:
-                pass
+            except Exception as e:
+                LOGGER.error(e)
