@@ -1,5 +1,6 @@
 import re
 import asyncio
+import traceback
 from bs4 import BeautifulSoup
 
 from bot.utils.crawler import getText
@@ -28,7 +29,13 @@ async def read_se():
                 
             tr_list.sort(key=lambda x:x[0])
 
-            seBoardDB.set_database(tr_list)
+            while True:
+                try:
+                    seBoardDB.set_database(tr_list)
+                except:
+                    print(traceback.format_exc())
+                else:
+                    break
         await asyncio.sleep(60)
 
 if __name__ == "__main__":
