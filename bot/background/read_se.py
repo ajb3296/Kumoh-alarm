@@ -17,7 +17,7 @@ async def read_se():
             trs = parse.find("table", {"summary" : "List of Articles"}).find("tbody").find_all("tr")
             tr_list = []
         except:
-            pass
+            print(traceback.format_exc())
         else:
             for tr in trs:
                 try:
