@@ -24,6 +24,6 @@ async def get_preview(post_id):
     if len(text) <= 100:
         result = text
     else:
-        result = text[:100] + f'...[더보기]({link})'
+        result = f'{text[:100]} ...[더보기]({link})'
     
     return img_preview, result
