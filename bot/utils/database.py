@@ -27,7 +27,7 @@ class seBoardDB:
             except:
                 temp = None
             if temp is None:
-                c.execute(f"INSERT INTO seboard (boardid, title, author) VALUES({board_id}, '{title}', '{author}')")
+                c.execute(f"INSERT INTO seboard (boardid, title, author) VALUES(?, ?, ?)", (board_id, title, author))
         conn.close()
 
     def get_database():
@@ -77,7 +77,7 @@ class channelDataDB:
             a = None
         if a is None:
             # add channel set
-            c.execute(f"INSERT INTO broadcastChannel VALUES('{id}', '{status}')")
+            c.execute(f"INSERT INTO broadcastChannel VALUES(?, ?)", (id, status))
         else:
             # modify channel set
             c.execute("UPDATE broadcastChannel SET onoff=:onoff WHERE id=:id", {"onoff": status, 'id': id})
