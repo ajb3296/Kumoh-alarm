@@ -17,14 +17,17 @@ class seBoardDB:
 
         # add se board data
         for tr in tr_list:
+            board_id = tr[0]
+            title = tr[1].replace("'", "''")
+            author = tr[2].replace("'", "''")
+            
             try:
-                c.execute("SELECT * FROM seboard WHERE boardid=:Id", {"Id": tr[0]})
+                c.execute("SELECT * FROM seboard WHERE boardid=:Id", {"Id": board_id})
                 temp = c.fetchone()
             except:
                 temp = None
             if temp is None:
-                title = tr[1].replace("'", "''")
-                c.execute(f"INSERT INTO seboard (boardid, title, author) VALUES({tr[0]}, '{title}', '{tr[2]}')")
+                c.execute(f"INSERT INTO seboard (boardid, title, author) VALUES({board_id}, '{title}', '{author}')")
         conn.close()
 
     def get_database():
