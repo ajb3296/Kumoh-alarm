@@ -1,4 +1,5 @@
 import discord
+from discord import option
 from discord.ext import commands
 from discord.commands import slash_command, Option
 
@@ -10,7 +11,8 @@ class AlarmSet (commands.Cog) :
         self.bot = bot
 
     @slash_command()
-    async def alarmset (self, ctx, onoff : Option(str, "이 채널에서의 알람을 켜거나 끕니다", choices=["ON", "OFF"])) :
+    @option("onoff", description="이 채널에서의 알람을 켜거나 끕니다", choices=["ON", "OFF"])
+    async def alarmset (self, ctx, onoff: str) :
         """ 채널에서 SE Board 알림을 켜거나 끕니다 """
         if ctx.author.id not in OWNERS:
             if not ctx.author.guild_permissions.manage_messages:
@@ -18,7 +20,7 @@ class AlarmSet (commands.Cog) :
                 embed.set_footer(text=BOT_NAME_TAG_VER)
                 return await ctx.respond(embed=embed)
         onoff = onoff.lower()
-        channelDataDB.channel_status_set(ctx.channel.id, onoff)
+        channelDataDB().channel_status_set(ctx.channel.id, onoff)
 
         if onoff == "on":
             msg_title = ":green_circle: 이 채널에서 알람을 켰습니다"
@@ -32,7 +34,7 @@ class AlarmSet (commands.Cog) :
     @slash_command()
     async def alarmstatus (self, ctx) :
         """ 이 채널에서 SE Board 알람이 켜져있는지 확인합니다. """
-        on_channel_list = channelDataDB.get_on_channel()
+        on_channel_list = channelDataDB().get_on_channel()
         if ctx.channel.id in on_channel_list:
             msg_title = ":green_circle: 이 채널에서 알람이 켜져있습니다."
         else:

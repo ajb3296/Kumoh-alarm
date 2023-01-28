@@ -19,16 +19,18 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 6:
 
 from bot.config import Development as Config
 
-TOKEN            = Config.TOKEN
-OWNERS           = Config.OWNERS
-DebugServer      = Config.DebugServer
-BOT_NAME         = Config.BOT_NAME
-BOT_TAG          = Config.BOT_TAG
-BOT_ID           = Config.BOT_ID
-color_code       = Config.color_code
-se_board_link    = Config.se_board_link
-se_db_path       = Config.se_db_path
-channel_db_path  = Config.channel_db_path
+TOKEN             = Config.TOKEN
+OWNERS            = Config.OWNERS
+DebugServer       = Config.DebugServer
+BOT_NAME          = Config.BOT_NAME
+BOT_TAG           = Config.BOT_TAG
+BOT_ID            = Config.BOT_ID
+color_code        = Config.color_code
+se_db_path        = Config.se_db_path
+channel_db_path   = Config.channel_db_path
+
+se_board_link     = Config.se_board_link
+kumoh_square_link = Config.kumoh_square_link
 
 EXTENSIONS = []
 for file in os.listdir("bot/cogs"):

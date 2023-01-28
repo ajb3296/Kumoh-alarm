@@ -9,6 +9,7 @@ from bot.utils.database import channelDataDB
 from bot import LOGGER, TOKEN, EXTENSIONS, BOT_NAME_TAG_VER
 
 async def status_task():
+    channel_db = channelDataDB()
     while True:
         try:
             await bot.change_presence(
@@ -16,11 +17,12 @@ async def status_task():
                 status = discord.Status.online,
             )
             await asyncio.sleep(10)
-            channel_list = channelDataDB.get_on_channel()
-            await bot.change_presence(
-                activity = discord.Game (f"{len(channel_list)}개의 채널에 알림을 보내주고 있어요!"),
-                status = discord.Status.online,
-            )
+            channel_list = channel_db.get_on_channel()
+            if channel_list is not None:
+                await bot.change_presence(
+                    activity = discord.Game (f"{len(channel_list)}개의 채널에 알림을 보내주고 있어요!"),
+                    status = discord.Status.online,
+                )
             await asyncio.sleep(10)
         except Exception:
             pass
