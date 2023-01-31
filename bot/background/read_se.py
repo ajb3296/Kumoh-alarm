@@ -18,9 +18,7 @@ async def read_se():
             trs = parse.find("table", {"summary": "List of Articles"})
 
             if trs is not None:
-                trs = trs.find("tbody")
-                if trs is not None:
-                    trs = BeautifulSoup(trs, 'lxml').find_all("tr")
+                trs = trs.find("tbody").find_all("tr")
             tr_list = []
         except:
             print(traceback.format_exc())

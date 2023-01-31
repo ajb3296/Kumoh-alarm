@@ -5,11 +5,11 @@ import traceback
 
 from bot.utils.database import *
 from bot.utils.se_preview import get_preview
-from bot import LOGGER, BOT_NAME_TAG_VER, se_board_link, se_db_path
+from bot import LOGGER, BOT_NAME_TAG_VER, se_board_link, db_path
 
 async def broadcast(bot):
     """ SE게시판 새 글 알림 전송 """
-    if not os.path.exists(se_db_path):
+    if not os.path.exists(db_path):
         await asyncio.sleep(5)
     while True:
         latest_data_id = seBoardDB().get_latest_data_id()
@@ -68,7 +68,7 @@ async def send_msg(bot, post: tuple, preview: (str | None), img_preview: (str | 
         everyone_ping = False
 
     # 채널 아이디 리스트 가져오기
-    channel_id_list = channelDataDB().get_on_channel()
+    channel_id_list = KumohSquarePage.name_list() + ["SE_Board"]
     # 채널 아이디 리스트가 존재한다면
     if channel_id_list != None:
         # 채널아이디별 메시지 전송

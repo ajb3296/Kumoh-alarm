@@ -15,10 +15,11 @@ async def get_preview(post_id: int) -> tuple:
         text_list = post.find_all('p')
 
     # Set img preview
+    img_preview = None
     try:
-        img_preview = post.find('img')['src']
+        img_preview = post.find('img')['src'].replace("./", "")
     except:
-        img_preview = None
+        pass
 
     text = ''
     for i in text_list:

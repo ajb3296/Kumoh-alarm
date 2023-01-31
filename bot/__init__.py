@@ -1,6 +1,7 @@
 import os
 import sys
 import logging
+from enum import Enum
 
 # Bot version
 BOT_VER = "V.1.0"
@@ -26,7 +27,7 @@ BOT_NAME          = Config.BOT_NAME
 BOT_TAG           = Config.BOT_TAG
 BOT_ID            = Config.BOT_ID
 color_code        = Config.color_code
-se_db_path        = Config.se_db_path
+db_path           = Config.db_path
 channel_db_path   = Config.channel_db_path
 
 se_board_link     = Config.se_board_link
@@ -38,3 +39,18 @@ for file in os.listdir("bot/cogs"):
         EXTENSIONS.append(file.replace(".py", ""))
 
 BOT_NAME_TAG_VER = f"{BOT_NAME}{BOT_TAG} | {BOT_VER}"
+
+class KumohSquarePage(Enum):
+    Academic_Information = "sub06_01_01_01.do"
+    Event_Information = "sub06_01_01_02.do"
+    General_News = "sub06_01_01_03.do"
+
+    @staticmethod
+    def name_list():
+        """ 이름 리스트 반환 """
+        return list(map(lambda c: c.name, KumohSquarePage))
+
+    @staticmethod
+    def value_list():
+        """ 값 리스트 반환 """
+        return list(map(lambda c: c.value, KumohSquarePage))

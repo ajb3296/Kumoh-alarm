@@ -19,7 +19,7 @@ class Config(object):
     se_board_link = "http://se.kumoh.ac.kr/"
     kumoh_square_link = "https://www.kumoh.ac.kr/ko/"
 
-    se_db_path = "se_board.db"
+    db_path = "board_db.db"
     channel_db_path = "channel.db"
 
 class Production(Config):
