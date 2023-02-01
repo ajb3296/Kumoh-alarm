@@ -32,5 +32,9 @@ async def get_ks_preview(link: str) -> tuple:
                 img_preview = f'https://kumoh.ac.kr{img_preview}'
         except:
             pass
+        
+        # 이미지 링크 길이가 너무 길 경우 에러남
+        if img_preview is not None and len(img_preview) > 2048:
+            img_preview = None
     
     return img_preview, result
