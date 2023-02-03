@@ -21,7 +21,7 @@ async def schedule(bot):
                 for server_id in server_list:
                     # 스케쥴 등록
                     for schedule in schedules:
-                        articleNo = schedule["articleNo"]
+                        articleNo = str(schedule["articleNo"])
                         title = schedule["articleTitle"]
                         start_time = datetime.datetime.strptime(f"{schedule['etcChar6']} 0:0:0", '%Y-%m-%d %H:%M:%S') - datetime.timedelta(hours=9)
                         end_time = datetime.datetime.strptime(f"{schedule['etcChar7']} 23:59:59", '%Y-%m-%d %H:%M:%S') - datetime.timedelta(hours=9)
