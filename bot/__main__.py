@@ -7,6 +7,7 @@ from bot.background.broadcast import broadcast
 from bot.utils.database import channelDataDB
 from bot.background.read_kumoh import read_kumoh
 from bot.background.broadcast_kumoh import broadcast_kumoh
+from bot.background.schedule import schedule
 
 from bot import LOGGER, TOKEN, EXTENSIONS, BOT_NAME_TAG_VER
 
@@ -48,6 +49,7 @@ class Bot (commands.Bot) :
         bot.loop.create_task(broadcast_kumoh(bot))
         bot.loop.create_task(read_se())
         bot.loop.create_task(read_kumoh())
+        bot.loop.create_task(schedule(bot))
 
     async def on_message (self, message) :
         if message.author.bot:

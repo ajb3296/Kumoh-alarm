@@ -174,7 +174,7 @@ class channelDataDB():
             cur.execute(f"UPDATE {table} SET onoff=:onoff WHERE id=:id", {"onoff": status, 'id': id})
         con.close()
 
-    def get_on_channel(self, table: str) -> list | None:
+    def get_on_channel(self, table: str) -> list[int] | None:
         """ 테이블의 모든 알람설정 되어있는 채널 가져오기 """
         con = sqlite3.connect(self.db_path, isolation_level=None)
         cur = con.cursor()
