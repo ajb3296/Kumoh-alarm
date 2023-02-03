@@ -51,7 +51,6 @@ async def schedule(bot):
                                                                     location="금오공과대학교",
                                                                     start_time=start_time,
                                                                     end_time=end_time)
-        print("스케쥴 등록 완료")
         await asyncio.sleep(3600)
 
 async def get_schedule() -> list:

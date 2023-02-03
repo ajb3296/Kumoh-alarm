@@ -28,9 +28,9 @@ class ScheduleAlarmSet (commands.Cog) :
         channelDataDB().channel_status_set(self.table, ctx.guild.id, onoff)
 
         if onoff == "on":
-            msg_title = ":green_circle: 이 서버에서 알람을 켰습니다"
+            msg_title = ":green_circle: 이 서버에서 학사일정 연동을 켰습니다"
         else:
-            msg_title = ":red_circle: 이 서버에서 알람을 껐습니다"
+            msg_title = ":red_circle: 이 서버에서 학사일정 연동을 껐습니다"
         embed=discord.Embed(title="알람 설정", description=msg_title, color=color_code)
 
         embed.set_footer(text=BOT_NAME_TAG_VER)
@@ -42,9 +42,9 @@ class ScheduleAlarmSet (commands.Cog) :
         # 채널 알림 상태를 DB에서 불러옴
         on_guild_list = channelDataDB().get_on_channel(self.table)
         if ctx.guild.id in on_guild_list:
-            msg_title = ":green_circle: 이 채널에서 알람이 켜져있습니다."
+            msg_title = ":green_circle: 이 서버에서 학사일정 연동이 켜져있습니다."
         else:
-            msg_title = ":red_circle: 이 채널에서 알람이 꺼져있습니다."
+            msg_title = ":red_circle: 이 서버에서 학사일정 연동이 꺼져있습니다."
         embed=discord.Embed(title="채널 알람 상태", description=msg_title, color=color_code)
 
         embed.set_footer(text=BOT_NAME_TAG_VER)
