@@ -9,14 +9,15 @@ from bot.utils.database import channelDataDB
 
 async def schedule(bot):
     """ 금오공대 학사일정 디스코드 일정으로 등록 """
-    # 스케쥴 가져오기
-    schedules = await get_schedule()
-
     # 동기화 켜진 서버 목록 가져오기
     server_list = channelDataDB().get_on_channel("Schedule")
 
     while True:
         if datetime.datetime.now().hour == 0:
+            # 스케쥴 가져오기
+            schedules = await get_schedule()
+
+            # 서버 목록이 존재한다면
             if server_list is not None:
                 # 각 서버별로
                 for server_id in server_list:
