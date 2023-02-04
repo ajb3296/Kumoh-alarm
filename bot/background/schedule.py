@@ -21,6 +21,11 @@ async def schedule(bot):
             if server_list is not None:
                 # 각 서버별로
                 for server_id in server_list:
+                    # 서버 가져오기
+                    get_server = bot.get_guild(server_id)
+                    # 서버 스케쥴 가져오기
+                    schedules_in_server = get_server.scheduled_events
+
                     # 스케쥴 등록
                     for schedule in schedules:
                         articleNo = str(schedule["articleNo"])
@@ -30,40 +35,31 @@ async def schedule(bot):
 
                         # 시작시간이 지금보다 미래라면
                         if start_time > datetime.datetime.now():
-                            # 서버 가져오기
-                            try:
-                                get_server = bot.get_guild(server_id)
-                            except:
-                                print(traceback.format_exc())
+                            # description이 일치하는 스케쥴 찾기
+                            server_data = None
+                            for sc in schedules_in_server:
+                                if sc.description == articleNo:
+                                    server_data = sc
+                                    break
+
+                            # 서버에 스케쥴이 등록되어 있지 않으면
+                            if server_data is None:
+                                # 서버에 등록
+                                await get_server.create_scheduled_event(name=title,
+                                                                description=articleNo,
+                                                                location="금오공과대학교",
+                                                                start_time=start_time,
+                                                                end_time=end_time)
+                            # 서버에 스케쥴이 등록되어 있으면
                             else:
-                                # 서버에 등록된 스케쥴 가져오기
-                                schedules_in_server = get_server.scheduled_events
-
-                                # description이 일치하는 스케쥴 찾기
-                                server_data = None
-                                for sc in schedules_in_server:
-                                    if sc.description == articleNo:
-                                        server_data = sc
-                                        break
-
-                                # 서버에 스케쥴이 등록되어 있지 않으면
-                                if server_data is None:
-                                    # 서버에 등록
-                                    await get_server.create_scheduled_event(name=title,
-                                                                    description=articleNo,
-                                                                    location="금오공과대학교",
-                                                                    start_time=start_time,
-                                                                    end_time=end_time)
-                                # 서버에 스케쥴이 등록되어 있으면
-                                else:
-                                    # 변경점 확인
-                                    if server_data.name != title or server_data.start_time != start_time or server_data.end_time != end_time:
-                                        # 다를경우 수정
-                                        await server_data.edit(name=title,
-                                                        description=articleNo,
-                                                        location="금오공과대학교",
-                                                        start_time=start_time,
-                                                        end_time=end_time)
+                                # 변경점 확인
+                                if server_data.name != title or server_data.start_time != start_time or server_data.end_time != end_time:
+                                    # 다를경우 수정
+                                    await server_data.edit(name=title,
+                                                    description=articleNo,
+                                                    location="금오공과대학교",
+                                                    start_time=start_time,
+                                                    end_time=end_time)
         await asyncio.sleep(3600)
 
 async def get_schedule() -> list:
