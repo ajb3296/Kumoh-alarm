@@ -1,4 +1,5 @@
 import json
+import discord
 import asyncio
 import datetime
 import traceback
@@ -45,11 +46,16 @@ async def schedule(bot):
                             # 서버에 스케쥴이 등록되어 있지 않으면
                             if server_data is None:
                                 # 서버에 등록
-                                await get_server.create_scheduled_event(name=title,
+                                try:
+                                    await get_server.create_scheduled_event(name=title,
                                                                 description=articleNo,
                                                                 location="금오공과대학교",
                                                                 start_time=start_time,
                                                                 end_time=end_time)
+                                except discord.errors.HTTPException:
+                                    # 서버에 스케쥴이 100개 이상이라면
+                                    pass
+
                             # 서버에 스케쥴이 등록되어 있으면
                             else:
                                 # 변경점 확인
