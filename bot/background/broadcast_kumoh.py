@@ -5,7 +5,7 @@ import traceback
 
 from bot.utils.database import *
 from bot.utils.ks_preview import get_ks_preview
-from bot import LOGGER, BOT_NAME_TAG_VER, db_path, color_code, kumoh_square_link
+from bot import LOGGER, BOT_NAME_TAG_VER, db_path, color_code
 
 async def broadcast_kumoh(bot):
     """ 금오광장 새 글 알림 전송 """
@@ -67,23 +67,21 @@ async def send_msg(bot, table_name: str, post: tuple, preview: (str | None), img
         # 채널아이디별 메시지 전송
         for channel_id in channel_id_list:
             target_channel = bot.get_channel(channel_id)
-            # 메시지 전송에 실패할 경우를 대비해 3번 시도
-            for _ in range(3):
-                try:
-                    embed=discord.Embed(title=title, description=f"", color=color_code)
-                    embed.add_field(name="카테고리", value=category, inline=True)
-                    embed.add_field(name="글쓴이", value=author, inline=True)
-                    embed.add_field(name="링크", value=link, inline=False)
-                    # 미리보기 텍스트가 있을 경우
-                    if preview:
-                        embed.add_field(name="미리보기", value=preview, inline=False)
-                    # 이미지 미리보기가 있을 경우
-                    if img_preview:
-                        embed.set_image(url=img_preview)
+            try:
+                embed=discord.Embed(title=title, description=f"", color=color_code)
+                embed.add_field(name="카테고리", value=category, inline=True)
+                embed.add_field(name="글쓴이", value=author, inline=True)
+                embed.add_field(name="링크", value=link, inline=False)
+                # 미리보기 텍스트가 있을 경우
+                if preview:
+                    embed.add_field(name="미리보기", value=preview, inline=False)
+                # 이미지 미리보기가 있을 경우
+                if img_preview:
+                    embed.set_image(url=img_preview)
 
-                    embed.set_footer(text=BOT_NAME_TAG_VER)
-                    await target_channel.send(embed=embed)
+                embed.set_footer(text=BOT_NAME_TAG_VER)
+                await target_channel.send(embed=embed)
 
-                    break
-                except Exception as e:
-                    LOGGER.error(traceback.format_exc())
+                break
+            except Exception as e:
+                LOGGER.error(traceback.format_exc())
