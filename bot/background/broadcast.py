@@ -78,8 +78,8 @@ async def send_msg(bot, post: tuple, preview: (str | None), img_preview: (str | 
             for _ in range(3):
                 try:
                     # 중요도에 따라 everyone ping
-                    if everyone_ping:
-                        await target_channel.send("@everyone")
+                    # if everyone_ping:
+                    #     await target_channel.send("@everyone")
                     embed=discord.Embed(title=post[2], description=f"", color=color)
                     embed.add_field(name="글쓴이", value=post[3], inline=True)
                     embed.add_field(name="중요도", value=important, inline=True)
