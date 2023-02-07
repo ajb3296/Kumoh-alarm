@@ -68,7 +68,7 @@ async def send_msg(bot, post: tuple, preview: (str | None), img_preview: (str | 
         everyone_ping = False
 
     # 채널 아이디 리스트 가져오기
-    channel_id_list = KumohSquarePage.name_list() + ["SE_Board"]
+    channel_id_list = channelDataDB().get_on_channel("SE_Board")
     # 채널 아이디 리스트가 존재한다면
     if channel_id_list != None:
         # 채널아이디별 메시지 전송
