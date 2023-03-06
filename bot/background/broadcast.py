@@ -19,7 +19,7 @@ async def broadcast(bot):
         # None 일 경우 5초 대기
         await asyncio.sleep(5)
     await asyncio.sleep(5)
-    
+
     while True:
         while True:
             now_latest_data_id = seBoardDB().get_latest_data_id()
@@ -55,17 +55,14 @@ async def send_msg(bot, post: tuple, preview: (str | None), img_preview: (str | 
     if post[3] in ["오득환", "김선명", "이현아", "김시관", "신윤식", "이해연", "김병만", "전태수", "학과장"]:
         color = 0xff0000
         important = ":red_circle: 매우 중요"
-        everyone_ping = True
     # 오렌지색
     elif post[3] in ["이한나[조교]", "학생회"]:
         color = 0xff7f00
         important = ":orange_circle: 중요"
-        everyone_ping = False
     # 초록색
     else:
         color = 0x008000
         important = ":green_circle: 보통"
-        everyone_ping = False
 
     # 채널 아이디 리스트 가져오기
     channel_id_list = channelDataDB().get_on_channel("SE_Board")
@@ -77,9 +74,6 @@ async def send_msg(bot, post: tuple, preview: (str | None), img_preview: (str | 
             # 메시지 전송에 실패할 경우를 대비해 3번 시도
             for _ in range(3):
                 try:
-                    # 중요도에 따라 everyone ping
-                    # if everyone_ping:
-                    #     await target_channel.send("@everyone")
                     embed=discord.Embed(title=post[2], description=f"", color=color)
                     embed.add_field(name="글쓴이", value=post[3], inline=True)
                     embed.add_field(name="중요도", value=important, inline=True)

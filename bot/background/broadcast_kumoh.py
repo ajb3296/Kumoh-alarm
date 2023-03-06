@@ -19,7 +19,7 @@ async def broadcast_kumoh(bot):
         # None 일 경우 5초 대기
         await asyncio.sleep(5)
     await asyncio.sleep(5)
-    
+
     while True:
         # 최신 글 id 가져오기
         while True:
@@ -29,7 +29,7 @@ async def broadcast_kumoh(bot):
                 break
             # None 일 경우 5초 대기
             await asyncio.sleep(5)
-        
+
         for data in latest_data_id.items():
             table_name, latest_id = data
             now_id: int = now_latest_data_id[table_name]
@@ -48,7 +48,7 @@ async def broadcast_kumoh(bot):
                             img_preview, preview_text = await get_ks_preview(link)
                         except:
                             print(traceback.format_exc())
-                        
+
                         # 메시지 전송
                         LOGGER.info(f"Send msg : {post}")
                         await send_msg(bot, table_name, post, preview_text, img_preview)
@@ -82,6 +82,5 @@ async def send_msg(bot, table_name: str, post: tuple, preview: (str | None), img
                 embed.set_footer(text=BOT_NAME_TAG_VER)
                 await target_channel.send(embed=embed)
 
-                break
             except Exception as e:
                 LOGGER.error(traceback.format_exc())

@@ -1,7 +1,7 @@
 import discord
 from discord import option
 from discord.ext import commands
-from discord.commands import slash_command, Option
+from discord.commands import slash_command
 
 from bot.utils.database import channelDataDB
 from bot import LOGGER, BOT_NAME_TAG_VER, color_code, OWNERS, KumohSquarePage
@@ -12,7 +12,7 @@ class AlarmSet (commands.Cog) :
         self.page_list = KumohSquarePage.name_list() + ["SE_Board"]
 
     @slash_command()
-    @option("table", description="알람 소스를 선택하세요", choices=KumohSquarePage.name_list() + ["SE_Board"])
+    @option("table", description="알람 소스를 선택하세요", choices=KumohSquarePage.name_list() + ["SE_Board", "Hagsigdang"])
     @option("onoff", description="이 채널에서의 알람을 켜거나 끕니다", choices=["ON", "OFF"])
     async def alarmset (self, ctx, table: str, onoff: str):
         """ 채널에서 SE Board 알림을 켜거나 끕니다 """

@@ -38,7 +38,7 @@ async def read_se():
                         )
                     else:
                         pass
-                
+
                 tr_list.sort(key=lambda x:x[0])
 
                 while True:
