@@ -5,6 +5,7 @@ import datetime
 import traceback
 from dateutil.relativedelta import relativedelta
 
+from bot import LOGGER
 from bot.utils.crawler import getText
 from bot.utils.database import channelDataDB
 
@@ -39,12 +40,13 @@ async def schedule(bot):
                             # description이 일치하는 스케쥴 찾기
                             server_data = None
                             for sc in schedules_in_server:
-                                if sc.description == articleNo:
+                                if int(sc.description) == int(articleNo):
                                     server_data = sc
                                     break
 
                             # 서버에 스케쥴이 등록되어 있지 않으면
                             if server_data is None:
+                                LOGGER.info(f"Add {articleNo}")
                                 # 서버에 등록
                                 try:
                                     await get_server.create_scheduled_event(name=title,
@@ -60,6 +62,7 @@ async def schedule(bot):
                             else:
                                 # 변경점 확인
                                 if server_data.name != title or datetime.datetime.strftime(server_data.start_time, "%Y-%m-%d %H:%M:%S") != datetime.datetime.strftime(start_time, "%Y-%m-%d %H:%M:%S") or datetime.datetime.strftime(server_data.end_time, "%Y-%m-%d %H:%M:%S") != datetime.datetime.strftime(end_time, "%Y-%m-%d %H:%M:%S"):
+                                    LOGGER.info(f"Edit {articleNo}")
                                     # 다를경우 수정
                                     await server_data.edit(name=title,
                                                     description=articleNo,
