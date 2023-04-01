@@ -50,7 +50,7 @@ class Bot (commands.Bot) :
         bot.loop.create_task(broadcast_kumoh(bot))
         bot.loop.create_task(read_se())
         bot.loop.create_task(read_kumoh())
-        bot.loop.create_task(schedule(bot))
+        # bot.loop.create_task(schedule(bot))
         bot.loop.create_task(broadcast_hagsigdang(bot))
 
     async def on_message (self, message) :

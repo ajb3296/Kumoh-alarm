@@ -9,7 +9,7 @@ from bot import LOGGER, BOT_NAME_TAG_VER, color_code, OWNERS, KumohSquarePage
 class AlarmSet (commands.Cog) :
     def __init__ (self, bot) :
         self.bot = bot
-        self.page_list = KumohSquarePage.name_list() + ["SE_Board"]
+        self.page_list = KumohSquarePage.name_list() + ["SE_Board", "Hagsigdang"]
 
     @slash_command()
     @option("table", description="알람 소스를 선택하세요", choices=KumohSquarePage.name_list() + ["SE_Board", "Hagsigdang"])
@@ -40,7 +40,7 @@ class AlarmSet (commands.Cog) :
     @slash_command()
     @option("table", description="알람이 켜져있는지 확인할 소스를 선택하세요", choices=KumohSquarePage.name_list() + ["SE_Board"])
     async def alarmstatus (self, ctx, table: str):
-        """ 이 채널에서 SE Board 알람이 켜져있는지 확인합니다. """
+        """ 이 채널에서 알람이 켜져있는지 확인합니다. """
         # 채널 알림 상태를 DB에서 불러옴
         on_channel_list = channelDataDB().get_on_channel(table)
         if ctx.channel.id in on_channel_list:

@@ -61,7 +61,7 @@ async def schedule(bot):
                             # 서버에 스케쥴이 등록되어 있으면
                             else:
                                 # 변경점 확인
-                                if server_data.name != title or datetime.datetime.strftime(server_data.start_time, "%Y-%m-%d %H:%M:%S") != datetime.datetime.strftime(start_time, "%Y-%m-%d %H:%M:%S") or datetime.datetime.strftime(server_data.end_time, "%Y-%m-%d %H:%M:%S") != datetime.datetime.strftime(end_time, "%Y-%m-%d %H:%M:%S"):
+                                if (server_data.name != title) or (datetime.datetime.strftime(server_data.start_time, "%Y-%m-%d %H:%M:%S") != datetime.datetime.strftime(start_time, "%Y-%m-%d %H:%M:%S")) or (datetime.datetime.strftime(server_data.end_time, "%Y-%m-%d %H:%M:%S") != datetime.datetime.strftime(end_time, "%Y-%m-%d %H:%M:%S")):
                                     LOGGER.info(f"Edit {articleNo}")
                                     # 다를경우 수정
                                     await server_data.edit(name=title,
