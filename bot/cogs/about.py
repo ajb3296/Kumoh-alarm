@@ -4,12 +4,12 @@ from discord.commands import slash_command
 
 from bot import LOGGER, BOT_NAME_TAG_VER, color_code
 
-class About (commands.Cog) :
-    def __init__ (self, bot) :
+class About(commands.Cog):
+    def __init__(self, bot):
         self.bot = bot
 
     @slash_command()
-    async def about (self, ctx) :
+    async def about(self,ctx):
         """ 봇에 대한 소개 """
         embed=discord.Embed(title="봇 정보", description="그저 SE 게시판 매번 확인하는게 귀찮았을뿐", color=color_code)
         embed.add_field(name="개발자", value="22 안재범", inline=True)
@@ -17,6 +17,6 @@ class About (commands.Cog) :
         embed.set_footer(text=BOT_NAME_TAG_VER)
         await ctx.respond(embed=embed)
 
-def setup (bot) :
-    bot.add_cog (About (bot))
+def setup(bot):
+    bot.add_cog (About(bot))
     LOGGER.info('About loaded!')

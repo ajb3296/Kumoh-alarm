@@ -6,14 +6,14 @@ from discord.commands import slash_command, Option
 from bot.utils.database import channelDataDB
 from bot import LOGGER, BOT_NAME_TAG_VER, color_code, OWNERS, KumohSquarePage
 
-class ScheduleAlarmSet (commands.Cog) :
-    def __init__ (self, bot) :
+class ScheduleAlarmSet(commands.Cog):
+    def __init__(self, bot):
         self.bot = bot
         self.table = "Schedule"
 
     @slash_command()
     @option("onoff", description="이 서버에서의 학사일정 연동을 켜거나 끕니다", choices=["ON", "OFF"])
-    async def scheduleset (self, ctx, onoff: str):
+    async def scheduleset(self, ctx, onoff: str):
         """ 서버에서 학사일정 연동을 켜거나 끕니다 """
         # 오너가 아닐 경우 관리자 권한이 있는지 확인
         if ctx.author.id not in OWNERS:
@@ -37,7 +37,7 @@ class ScheduleAlarmSet (commands.Cog) :
         await ctx.respond(embed=embed)
     
     @slash_command()
-    async def schedulestatus (self, ctx):
+    async def schedulestatus(self, ctx):
         """ 이 서버에서 학사일정 연동이 켜져있는지 확인합니다. """
         # 채널 알림 상태를 DB에서 불러옴
         on_guild_list = channelDataDB().get_on_channel(self.table)
@@ -50,6 +50,6 @@ class ScheduleAlarmSet (commands.Cog) :
         embed.set_footer(text=BOT_NAME_TAG_VER)
         await ctx.respond(embed=embed)
 
-def setup (bot) :
-    bot.add_cog (ScheduleAlarmSet (bot))
+def setup(bot):
+    bot.add_cog(ScheduleAlarmSet(bot))
     LOGGER.info('ScheduleAlarmSet loaded!')

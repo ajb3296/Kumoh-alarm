@@ -6,15 +6,15 @@ from discord.commands import slash_command
 from bot.utils.database import channelDataDB
 from bot import LOGGER, BOT_NAME_TAG_VER, color_code, OWNERS, KumohSquarePage
 
-class AlarmSet (commands.Cog) :
-    def __init__ (self, bot) :
+class AlarmSet(commands.Cog):
+    def __init__(self, bot):
         self.bot = bot
         self.page_list = KumohSquarePage.name_list() + ["SE_Board", "Hagsigdang"]
 
     @slash_command()
     @option("table", description="알람 소스를 선택하세요", choices=KumohSquarePage.name_list() + ["SE_Board", "Hagsigdang"])
     @option("onoff", description="이 채널에서의 알람을 켜거나 끕니다", choices=["ON", "OFF"])
-    async def alarmset (self, ctx, table: str, onoff: str):
+    async def alarmset(self, ctx, table: str, onoff: str):
         """ 채널에서 SE Board 알림을 켜거나 끕니다 """
         # 오너가 아닐 경우 관리자 권한이 있는지 확인
         if ctx.author.id not in OWNERS:
@@ -39,7 +39,7 @@ class AlarmSet (commands.Cog) :
     
     @slash_command()
     @option("table", description="알람이 켜져있는지 확인할 소스를 선택하세요", choices=KumohSquarePage.name_list() + ["SE_Board"])
-    async def alarmstatus (self, ctx, table: str):
+    async def alarmstatus(self, ctx, table: str):
         """ 이 채널에서 알람이 켜져있는지 확인합니다. """
         # 채널 알림 상태를 DB에서 불러옴
         on_channel_list = channelDataDB().get_on_channel(table)
@@ -52,6 +52,6 @@ class AlarmSet (commands.Cog) :
         embed.set_footer(text=BOT_NAME_TAG_VER)
         await ctx.respond(embed=embed)
 
-def setup (bot) :
-    bot.add_cog (AlarmSet (bot))
+def setup(bot):
+    bot.add_cog(AlarmSet(bot))
     LOGGER.info('AlarmSet loaded!')

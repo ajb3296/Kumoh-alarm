@@ -5,13 +5,13 @@ from discord.commands import slash_command, Option
 
 from bot import LOGGER, BOT_NAME_TAG_VER, color_code, OWNERS, EXTENSIONS, DebugServer
 
-class Help (commands.Cog) :
-    def __init__ (self, bot) :
+class Help(commands.Cog):
+    def __init__(self, bot):
         self.bot = bot
 
     @slash_command()
     @option("help_option", description="알고 싶은 메뉴를 선택하세요", choices=["GENERAL", "ALARM"])
-    async def help (self, ctx, *, help_option: str) :
+    async def help(self, ctx, *, help_option: str):
         """ 도움말 """
         if not help_option == None:
             help_option = help_option.upper()
@@ -46,6 +46,6 @@ class Help (commands.Cog) :
             await ctx.respond(embed=embed)
             
 
-def setup (bot) :
-    bot.add_cog (Help (bot))
+def setup(bot):
+    bot.add_cog(Help(bot))
     LOGGER.info('Help loaded!')

@@ -5,8 +5,8 @@ from discord.commands import slash_command
 
 from bot import LOGGER, BOT_NAME_TAG_VER, color_code
 
-class Other (commands.Cog) :
-    def __init__ (self, bot) :
+class Other(commands.Cog):
+    def __init__(self, bot):
         self.bot = bot
 
     @slash_command()
@@ -21,13 +21,13 @@ class Other (commands.Cog) :
     async def uptime(self, ctx):
         """ 서버 업타임 """
         res = subprocess.check_output("uptime", shell=False, encoding='utf-8')
-        embed=discord.Embed(title="Uptime", description="```%s```" %res.replace(',  ', '\n').replace(', ', '\n').replace(': ', ' : ')[1:], color=color_code)
+        embed=discord.Embed(title="Uptime", description="```%s```" %res.replace(',  ', '\n').replace(', ', '\n').replace(': ', ': ')[1:], color=color_code)
         embed.set_footer(text=BOT_NAME_TAG_VER)
         await ctx.respond(embed=embed)
 
         import requests
         result = requests.get("https://www.kumoh.ac.kr/app/common/selectDataList.do?sqlId=jw.Article.selectCalendarArticle&modelNm=list&jsonStr=%7B%22year%22%3A%222023%22%2C%22bachelorBoardNoList%22%3A%5B%2212%22%5D%7D").text
 
-def setup (bot) :
-    bot.add_cog (Other (bot))
+def setup(bot):
+    bot.add_cog(Other(bot))
     LOGGER.info('Other loaded!')

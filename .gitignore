@@ -2,6 +2,7 @@
 config.py
 test.py
 *.db
+.vscode
 
 
 # Byte-compiled / optimized / DLL files
