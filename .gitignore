@@ -1,6 +1,6 @@
 .DS_Store
 config.py
-test.py
+test*.py
 *.db
 .vscode
 
