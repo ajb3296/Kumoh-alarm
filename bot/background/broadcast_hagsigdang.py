@@ -28,7 +28,7 @@ async def broadcast_hagsigdang(bot) -> None:
                 await send_hagsigdang(bot, today_menu_list)
         await asyncio.sleep(60)
 
-async def send_hagsigdang(bot, today_menu: list(list(str, str))) -> None:
+async def send_hagsigdang(bot, today_menu: list(str, str)) -> None:
     """ 학생식당 메뉴 전송 """
     # 채널 아이디 리스트 가져오기
     channel_id_list = channelDataDB().get_on_channel("Hagsigdang")
