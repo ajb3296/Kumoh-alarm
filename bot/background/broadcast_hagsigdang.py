@@ -41,7 +41,7 @@ async def send_hagsigdang(bot, today_menu: list) -> None:
 
                 for menu in today_menu:
                     menu_title, menu_content = menu
-                    embed.add_field(name=menu_title, value=menu_content, inline=False)
+                    embed.add_field(name=menu_title, value=menu_content, inline=True)
 
                 embed.set_footer(text=BOT_NAME_TAG_VER)
                 await target_channel.send(embed=embed)
