@@ -27,7 +27,7 @@ class Room(commands.Cog):
                 break
 
         # 조회 시작시간, 종료시간 설정
-        start_time = datetime.datetime.now().strftime('%Y%%2F%m%%2F%d+%H:00:00')
+        start_time = (datetime.datetime.now() - datetime.timedelta(hours=2)).strftime('%Y%%2F%m%%2F%d+%H:00:00')
         end_time = (datetime.datetime.now() + datetime.timedelta(hours=2)).strftime('%Y%%2F%m%%2F%d+%H:00:00')
 
         # 예약 불가능한 리스트 가져옴
@@ -36,8 +36,7 @@ class Room(commands.Cog):
             tableDeactivationList = []
         else:
             tableDeactivationList = [i["tableName"] for i in tableDeactivationList]
-        
-        
+
         # 방이 예약가능한지 체크
         for i in tableDeactivationList:
             if i in room_list:
@@ -47,6 +46,7 @@ class Room(commands.Cog):
         reservation_possible = '\n'.join(room_list)
         # 예약 불가능한 방
         reservation_impossible = '\n'.join(tableDeactivationList)
+
         embed=discord.Embed(title=f"{room} 현황", description="", color=color_code)
         embed.add_field(name="예약 가능", value=reservation_possible, inline=True)
         embed.add_field(name="예약 불가능", value=reservation_impossible, inline=True)

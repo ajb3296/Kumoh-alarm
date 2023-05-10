@@ -27,6 +27,9 @@ class Help(commands.Cog):
 
             if "ping" in EXTENSIONS:
                 embed.add_field(name=f"/ping",   value=">>> 핑 속도를 측정합니다.", inline=True)
+            
+            if "room" in EXTENSIONS:
+                embed.add_field(name=f"/room [*프로젝트실*]",   value=">>> 선택한 프로젝트실의 현황을 알려드립니다.", inline=True)
 
             embed.set_footer(text=BOT_NAME_TAG_VER)
             await ctx.respond(embed=embed)
