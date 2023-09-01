@@ -67,7 +67,7 @@ background_list = {
     "read_kumoh": False,
     # "schedule": True,
     "broadcast_hagsigdang": True,
-    "broadcast_dormitory": True
+    "broadcast_dorm_food": True
 }
 
 intents = discord.Intents.default()
