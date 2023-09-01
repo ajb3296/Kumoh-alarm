@@ -12,10 +12,10 @@ class AlarmSet(commands.Cog):
         self.page_list = KumohSquarePage.name_list() + ["SE_Board", "Hagsigdang"]
 
     @slash_command()
-    @option("table", description="알람 소스를 선택하세요", choices=KumohSquarePage.name_list() + ["SE_Board", "Hagsigdang"])
+    @option("table", description="알람 소스를 선택하세요", choices=KumohSquarePage.name_list() + ["SE_Board", "Hagsigdang", "Purum", "Orum1", "Orum23"])
     @option("onoff", description="이 채널에서의 알람을 켜거나 끕니다", choices=["ON", "OFF"])
     async def alarmset(self, ctx, table: str, onoff: str):
-        """ 채널에서 SE Board 알림을 켜거나 끕니다 """
+        """ 채널에서 알림을 켜거나 끕니다 """
         # 오너가 아닐 경우 관리자 권한이 있는지 확인
         if ctx.author.id not in OWNERS:
             if not ctx.author.guild_permissions.manage_messages:
