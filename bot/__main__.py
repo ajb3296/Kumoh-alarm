@@ -8,6 +8,7 @@ from bot.background.read_kumoh import read_kumoh
 from bot.background.broadcast_kumoh import broadcast_kumoh
 # from bot.background.schedule import schedule
 from bot.background.broadcast_hagsigdang import broadcast_hagsigdang
+from bot.background.broadcast_dormitory import broadcast_dorm_food
 
 from bot import LOGGER, TOKEN, EXTENSIONS, BOT_NAME_TAG_VER
 
@@ -65,7 +66,8 @@ background_list = {
     "read_se": False,
     "read_kumoh": False,
     # "schedule": True,
-    "broadcast_hagsigdang": True
+    "broadcast_hagsigdang": True,
+    "broadcast_dormitory": True
 }
 
 intents = discord.Intents.default()

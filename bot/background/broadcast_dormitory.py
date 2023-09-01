@@ -8,7 +8,7 @@ from bot.utils.crawler import getText
 from bot.utils.database import *
 from bot import LOGGER, BOT_NAME_TAG_VER, color_code
 
-async def broadcast_hagsigdang(bot) -> None:
+async def broadcast_dorm_food(bot) -> None:
     """ 오늘의 기숙사 식당 메뉴 체크 """
     header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'}
     links = {
@@ -30,10 +30,10 @@ async def broadcast_hagsigdang(bot) -> None:
                     menu = i.find_all("td")[datetime.now().weekday()].get_text().strip().split("\n")
                     today_menu_list.append([menu[0], '\n'.join(menu[1:]).strip()])
 
-                await send_dormsigdang(bot, dorm, today_menu_list)
+                await send_dorm_food(bot, dorm, today_menu_list)
         await asyncio.sleep(60)
 
-async def send_dormsigdang(bot, dorm, today_menu: list) -> None:
+async def send_dorm_food(bot, dorm, today_menu: list) -> None:
     """ 기숙사식당 메뉴 전송 """
     dorm_name = {
         "Purum": "푸름관",
