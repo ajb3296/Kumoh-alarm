@@ -2,7 +2,7 @@ import discord
 import asyncio
 import traceback
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from bot.utils.crawler import getText
 from bot.utils.database import *
@@ -21,7 +21,8 @@ async def broadcast_dorm_food(bot) -> None:
         # 매일 7시에 메뉴 전송
         if datetime.now().hour == 7 and datetime.now().minute == 0:
             for dorm in links:
-                result = await getText(links[dorm], header)
+                dt = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+                result = await getText(links[dorm] + "?mode=menuList&srDt=" + dt, header)
                 parse = BeautifulSoup(result, 'lxml')
                 box = parse.find("table", {"class": "smu-table"})
 
