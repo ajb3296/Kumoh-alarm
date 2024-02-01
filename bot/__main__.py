@@ -6,7 +6,7 @@ from bot.background.read_se import read_se
 from bot.background.broadcast import broadcast
 from bot.background.read_kumoh import read_kumoh
 from bot.background.broadcast_kumoh import broadcast_kumoh
-# from bot.background.schedule import schedule
+from bot.background.schedule import schedule
 from bot.background.broadcast_hagsigdang import broadcast_hagsigdang
 from bot.background.broadcast_dormitory import broadcast_dorm_food
 
