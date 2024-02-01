@@ -191,6 +191,10 @@ class channelDataDB():
                 on_channel.append(channel[0])
         return on_channel
 
+# class ScheduleDB():
+    # schedule
+    #     id, title, start, end
+
 if __name__ == "__main__":
     db_path = "se_board.db"
     channel_db_path = "channel.db"

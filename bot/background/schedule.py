@@ -15,7 +15,8 @@ async def schedule(bot):
     server_list = channelDataDB().get_on_channel("Schedule")
 
     while True:
-        if datetime.datetime.now().hour == 0:
+        # 한달에 한번씩
+        if datetime.datetime.now().day == 1:
             # 스케쥴 가져오기
             schedules = await get_schedule()
 
@@ -69,7 +70,7 @@ async def schedule(bot):
                                                     location="금오공과대학교",
                                                     start_time=start_time,
                                                     end_time=end_time)
-        await asyncio.sleep(3600)
+        await asyncio.sleep(86400)
 
 async def get_schedule() -> list:
     """ 금오공대 학사일정 가져오기 """
