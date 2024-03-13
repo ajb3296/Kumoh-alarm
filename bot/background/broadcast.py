@@ -56,7 +56,7 @@ async def send_msg(bot, post: tuple, preview: (str | None), img_preview: (str | 
         color = 0xff0000
         important = ":red_circle: 매우 중요"
     # 오렌지색
-    elif post[3] in ["이한나[조교]", "[조교]", "학생회"]:
+    elif post[3] in ["이한나[조교]", "[조교]", "학생회", "hanna@kumoh.ac.kr"]:
         color = 0xff7f00
         important = ":orange_circle: 중요"
     # 초록색
@@ -77,7 +77,7 @@ async def send_msg(bot, post: tuple, preview: (str | None), img_preview: (str | 
                     embed=discord.Embed(title=post[2], description=f"", color=color)
                     embed.add_field(name="글쓴이", value=post[3], inline=True)
                     embed.add_field(name="중요도", value=important, inline=True)
-                    embed.add_field(name="링크", value=f"{se_board_link}freeboard/{post[1]}", inline=False)
+                    embed.add_field(name="링크", value=f"{se_board_link}notice/{post[1]}", inline=False)
                     # 미리보기 텍스트가 있을 경우
                     if preview:
                         embed.add_field(name="미리보기", value=preview, inline=False)

@@ -30,7 +30,7 @@ async def read_se():
 
                     result_list.append(
                         (
-                            int(re.sub(r'[^0-9]', '', content["postId"])), # 글 번호
+                            content["postId"], # 글 번호
                             content["title"].replace("\n", ""), # 제목
                             content["author"]["name"], # 작성자 이름
                             login_id # 작성자 아이디
