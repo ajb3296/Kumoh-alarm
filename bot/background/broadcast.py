@@ -56,7 +56,7 @@ async def send_msg(bot, post: tuple, preview: (str | None), img_preview: (str | 
         color = 0xff0000
         important = ":red_circle: 매우 중요"
     # 오렌지색
-    elif post[3] in ["이한나[조교]", "학생회"]:
+    elif post[3] in ["이한나[조교]", "[조교]", "학생회"]:
         color = 0xff7f00
         important = ":orange_circle: 중요"
     # 초록색

@@ -18,13 +18,14 @@ class seBoardDB():
         con = sqlite3.connect(self.db_path, isolation_level=None)
         cur = con.cursor()
         # Create table if it doesn't exist
-        cur.execute(f"CREATE TABLE IF NOT EXISTS seboard (id integer PRIMARY KEY AUTOINCREMENT, boardid int, title text, author text)")
+        cur.execute(f"CREATE TABLE IF NOT EXISTS seboard (id integer PRIMARY KEY AUTOINCREMENT, boardid int, title text, author text, authorid text)")
 
         # add se board data
         for tr in tr_list:
             board_id = tr[0]
             title = tr[1].replace("'", "''")
             author = tr[2].replace("'", "''")
+            author_id = tr[3].replace("'", "''")
             
             try:
                 cur.execute("SELECT * FROM seboard WHERE boardid=:Id", {"Id": board_id})
@@ -32,7 +33,7 @@ class seBoardDB():
             except:
                 temp = None
             if temp is None:
-                cur.execute(f"INSERT INTO seboard (boardid, title, author) VALUES(?, ?, ?)", (board_id, title, author))
+                cur.execute(f"INSERT INTO seboard (boardid, title, author, authorid) VALUES(?, ?, ?, ?)", (board_id, title, author, author_id))
         con.close()
 
     def get_database(self) -> list | None:
@@ -48,7 +49,7 @@ class seBoardDB():
         con.close()
         return temp
     
-    def get_database_from_id(self, id: int) -> tuple[int, int, str, str] | None:
+    def get_database_from_id(self, id: int) -> tuple[int, int, str, str, str] | None:
         """ id로 데이터베이스 가져오기 """
         con = sqlite3.connect(self.db_path, isolation_level=None)
         cur = con.cursor()

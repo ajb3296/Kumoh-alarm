@@ -1,4 +1,4 @@
-import os
+# import os
 
 if not __name__.endswith("sample_config"):
     import sys
@@ -16,7 +16,7 @@ class Config(object):
 
     color_code = 0xc68e6e # 색상코드
 
-    se_board_link = "http://se.kumoh.ac.kr/"
+    se_board_link = "https://seboard.site/"
     kumoh_square_link = "https://www.kumoh.ac.kr/ko/"
 
     db_path = "board_db.db"
