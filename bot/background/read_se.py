@@ -2,7 +2,6 @@ import re
 import asyncio
 import requests
 import traceback
-# from bs4 import BeautifulSoup
 
 # from bot.utils.crawler import getText
 from bot.utils.database import seBoardDB

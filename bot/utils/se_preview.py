@@ -1,7 +1,12 @@
+import asyncio
 import requests
 from bs4 import BeautifulSoup
 
-from bot import se_board_link
+if __name__ != "__main__":
+    from bot import se_board_link
+else:
+    se_board_link = "https://seboard.site/"
+
 # from bot.utils.crawler import getText
 
 async def get_preview(post_id: int) -> tuple:
@@ -29,6 +34,10 @@ async def get_preview(post_id: int) -> tuple:
     if len(text) <= 100:
         result = text
     else:
-        result = f'{text[:100]} ...[더보기]({link})'
+        result = f'{text[:100]} ...[더보기]({se_board_link}/notice/{post_id})'
     
     return img_preview, result
+
+# test
+if __name__ == "__main__":
+    print(asyncio.run(get_preview(34915)))
