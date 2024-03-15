@@ -9,7 +9,7 @@ async def get_preview(post_id: int) -> tuple:
     link = f"{se_board_link}v1/posts/{post_id}"
 
     html = requests.get(link, headers=header).json()
-    contents = html['content']
+    contents = html['contents']
     
     parse = BeautifulSoup(contents, 'lxml')
 
