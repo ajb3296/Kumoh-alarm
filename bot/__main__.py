@@ -67,6 +67,7 @@ background_list = {
     "read_kumoh": False,
     "schedule": True,
     "broadcast_hagsigdang": True,
+    "broadcast_faculty_cafeteria": True,
     "broadcast_dorm_food": True
 }
 
