@@ -8,7 +8,7 @@ from bot.utils.crawler import getText
 from bot.utils.database import *
 from bot import LOGGER, BOT_NAME_TAG_VER, color_code
 
-async def broadcast_hagsigdang(bot) -> None:
+async def broadcast_faculty_cafeteria(bot) -> None:
     """ 오늘의 교직원식당 메뉴 체크 """
     header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'}
     link = "https://www.kumoh.ac.kr/ko/restaurant02.do"
@@ -25,10 +25,10 @@ async def broadcast_hagsigdang(bot) -> None:
                     menu = i.find_all("td")[datetime.now().weekday()].get_text().strip().split("\n")
                     today_menu_list.append([menu[0], '\n'.join(menu[1:]).strip()])
 
-                await send_hagsigdang(bot, today_menu_list)
+                await send_faculty_cafeteria(bot, today_menu_list)
         await asyncio.sleep(60)
 
-async def send_hagsigdang(bot, today_menu: list) -> None:
+async def send_faculty_cafeteria(bot, today_menu: list) -> None:
     """ 교직원식당 메뉴 전송 """
     # 채널 아이디 리스트 가져오기
     channel_id_list = channelDataDB().get_on_channel("faculty_cafeteria")
