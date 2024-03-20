@@ -9,6 +9,7 @@ from bot.background.broadcast_kumoh import broadcast_kumoh
 from bot.background.schedule import schedule
 from bot.background.broadcast_hagsigdang import broadcast_hagsigdang
 from bot.background.broadcast_dormitory import broadcast_dorm_food
+from bot.background.broadcast_faculty_cafeteria import broadcast_faculty_cafeteria
 
 from bot import LOGGER, TOKEN, EXTENSIONS, BOT_NAME_TAG_VER
 
