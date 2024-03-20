@@ -12,7 +12,7 @@ class AlarmSet(commands.Cog):
         self.page_list = KumohSquarePage.name_list() + ["SE_Board", "Hagsigdang"]
 
     @slash_command()
-    @option("table", description="알람 소스를 선택하세요", choices=KumohSquarePage.name_list() + ["SE_Board", "Hagsigdang", "Purum", "Orum1", "Orum23"])
+    @option("table", description="알람 소스를 선택하세요", choices=KumohSquarePage.name_list() + ["SE_Board", "Hagsigdang", "faculty_cafeteria", "Purum", "Orum1", "Orum23"])
     @option("onoff", description="이 채널에서의 알람을 켜거나 끕니다", choices=["ON", "OFF"])
     async def alarmset(self, ctx, table: str, onoff: str):
         """ 채널에서 알림을 켜거나 끕니다 """
@@ -38,7 +38,7 @@ class AlarmSet(commands.Cog):
         await ctx.respond(embed=embed)
     
     @slash_command()
-    @option("table", description="알람이 켜져있는지 확인할 소스를 선택하세요", choices=KumohSquarePage.name_list() + ["SE_Board"])
+    @option("table", description="알람이 켜져있는지 확인할 소스를 선택하세요", choices=KumohSquarePage.name_list() + ["SE_Board", "Hagsigdang", "faculty_cafeteria", "Purum", "Orum1", "Orum23"])
     async def alarmstatus(self, ctx, table: str):
         """ 이 채널에서 알람이 켜져있는지 확인합니다. """
         # 채널 알림 상태를 DB에서 불러옴
