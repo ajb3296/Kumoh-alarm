@@ -17,14 +17,12 @@ async def read_se():
             content_li = result["content"]
 
             result_list = []
-        except:
-            print(traceback.format_exc())
-        else:
+
             if content_li is not None:
                 for content in content_li:
 
-                    login_id = content["author"]["loginId"]
-                    if content["author"]["loginId"] is None:
+                    login_id = str(content["author"]["userId"])
+                    if login_id is None:
                         login_id = "익명"
 
                     result_list.append(
@@ -45,5 +43,7 @@ async def read_se():
                         print(traceback.format_exc())
                     else:
                         break
-
+        
+        except:
+            print(traceback.format_exc())
         await asyncio.sleep(60)
