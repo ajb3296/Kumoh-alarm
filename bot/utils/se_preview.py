@@ -34,7 +34,7 @@ async def get_preview(post_id: int) -> tuple:
     if len(text) <= 100:
         result = text
     else:
-        result = f'{text[:100]} ...[더보기]({se_board_link}/notice/{post_id})'
+        result = f'{text[:100]} ...[더보기]({se_board_link}notice/{post_id})'
     
     return img_preview, result
 
