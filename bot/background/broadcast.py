@@ -7,6 +7,28 @@ from bot.utils.database import *
 from bot.utils.se_preview import get_preview
 from bot import LOGGER, BOT_NAME_TAG_VER, se_board_link, db_path
 
+def check_importance(name: str) -> tuple[int, str]:
+    color = 0x008000
+    important = ":green_circle: 보통"
+
+    very_important_list =  ["오득환", "김선명", "이현아", "김시관", "신윤식", "이해연", "김병만", "전태수", "김영원", "이광희", "김영우", "학과장"]
+    important_list = ["이한나[조교]", "[조교]", "학생회"]
+
+    for vil in very_important_list:
+        if name.contains(vil):
+            color = 0xff0000
+            important = ":red_circle: 매우 중요"
+            break
+
+    if color == 0x008000:
+        for il in important_list:
+            if name.contains(il):
+                color = 0xff7f00
+                important = ":orange_circle: 중요"
+                break
+    
+    return color, important
+
 async def broadcast(bot):
     """ SE게시판 새 글 알림 전송 """
     if not os.path.exists(db_path):
@@ -51,18 +73,8 @@ async def broadcast(bot):
 
 async def send_msg(bot, post: tuple, preview: (str | None), img_preview: (str | None)):
     """ 메시지 전송 """
-    # 빨간색
-    if post[3] in ["오득환", "김선명", "이현아", "김시관", "신윤식", "이해연", "김병만", "전태수", "학과장"]:
-        color = 0xff0000
-        important = ":red_circle: 매우 중요"
-    # 오렌지색
-    elif post[3] in ["이한나[조교]", "[조교]", "학생회", "hanna@kumoh.ac.kr"]:
-        color = 0xff7f00
-        important = ":orange_circle: 중요"
-    # 초록색
-    else:
-        color = 0x008000
-        important = ":green_circle: 보통"
+    
+    color, important = check_importance(post[3])
 
     # 채널 아이디 리스트 가져오기
     channel_id_list = channelDataDB().get_on_channel("SE_Board")
