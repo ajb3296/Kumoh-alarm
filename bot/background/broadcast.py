@@ -15,14 +15,14 @@ def check_importance(name: str) -> tuple[int, str]:
     important_list = ["이한나[조교]", "[조교]", "학생회"]
 
     for vil in very_important_list:
-        if name.contains(vil):
+        if name in vil:
             color = 0xff0000
             important = ":red_circle: 매우 중요"
             break
 
     if color == 0x008000:
         for il in important_list:
-            if name.contains(il):
+            if name in il:
                 color = 0xff7f00
                 important = ":orange_circle: 중요"
                 break
