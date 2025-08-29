@@ -11,22 +11,28 @@ def check_importance(name: str) -> tuple[int, str]:
     color = 0x008000
     important = ":green_circle: 보통"
 
+    name = name.split(" ")
+
     very_important_list =  ["오득환", "김선명", "이현아", "김시관", "신윤식", "이해연", "김병만", "전태수", "김영원", "이광희", "김영우", "학과장"]
     important_list = ["이한나[조교]", "[조교]", "학생회"]
 
     for vil in very_important_list:
-        if name in vil:
+        if name[0] in vil:
             color = 0xff0000
             important = ":red_circle: 매우 중요"
             break
 
     if color == 0x008000:
         for il in important_list:
-            if name in il:
+            if name[0] in il:
                 color = 0xff7f00
                 important = ":orange_circle: 중요"
                 break
     
+    if name[-1] == "교수":
+        color = 0xff0000
+        important = ":red_circle: 매우 중요"
+
     return color, important
 
 async def broadcast(bot):

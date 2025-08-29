@@ -32,7 +32,7 @@ async def send_hagsigdang(bot, today_menu: list) -> None:
     """ 학생식당 메뉴 전송 """
     # 채널 아이디 리스트 가져오기
     channel_id_list = channelDataDB().get_on_channel("Hagsigdang")
-    if channel_id_list is not None:
+    if channel_id_list is not None and today_menu is not None:
         # 채널아이디별 메시지 전송
         for channel_id in channel_id_list:
             target_channel = bot.get_channel(channel_id)
