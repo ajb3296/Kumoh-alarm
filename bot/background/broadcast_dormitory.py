@@ -36,6 +36,11 @@ async def broadcast_dorm_food(bot) -> None:
 
 async def send_dorm_food(bot, dorm, today_menu: list) -> None:
     """ 기숙사식당 메뉴 전송 """
+
+    # 데이터 없으면 안보냄
+    if len(today_menu) <= 0:
+        return
+
     dorm_name = {
         "Purum": "푸름관",
         "Orum1": "오름관 1",

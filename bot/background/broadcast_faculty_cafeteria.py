@@ -30,6 +30,11 @@ async def broadcast_faculty_cafeteria(bot) -> None:
 
 async def send_faculty_cafeteria(bot, today_menu: list) -> None:
     """ 교직원식당 메뉴 전송 """
+
+    # 데이터 없으면 안보냄
+    if len(today_menu) <= 0:
+        return
+
     # 채널 아이디 리스트 가져오기
     channel_id_list = channelDataDB().get_on_channel("faculty_cafeteria")
     if channel_id_list is not None:

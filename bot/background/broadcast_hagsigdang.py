@@ -30,6 +30,11 @@ async def broadcast_hagsigdang(bot) -> None:
 
 async def send_hagsigdang(bot, today_menu: list) -> None:
     """ 학생식당 메뉴 전송 """
+    
+    # 데이터 없으면 안보냄
+    if len(today_menu) <= 0:
+        return
+
     # 채널 아이디 리스트 가져오기
     channel_id_list = channelDataDB().get_on_channel("Hagsigdang")
     if channel_id_list is not None and today_menu is not None:
