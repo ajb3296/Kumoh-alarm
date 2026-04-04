@@ -66,7 +66,7 @@ async def send_employment(bot, today_employment: list) -> None:
                     employment_id = i["id"]
                     company_name = i["name"]
                     employment_title = i["title"]
-                    end_date = i["end_date"].split("T")[0]
+                    end_date = i["end_time"].split("T")[0]
 
                     value = f"[{employment_title}](https://jasoseol.com/recruit/{employment_id}) (~{end_date})"
 
