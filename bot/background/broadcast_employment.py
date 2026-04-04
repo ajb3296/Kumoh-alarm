@@ -1,7 +1,7 @@
 import discord
 import traceback
 import httpx
-import time
+import asyncio
 from datetime import datetime, timedelta
 
 from bot.utils.database import *
@@ -42,7 +42,7 @@ async def broadcast_employment(bot) -> None:
                     if isDevDuty:
                         result.append(i)
 
-        time.sleep(60)
+        await asyncio.sleep(60)
 
 async def send_employment(bot, today_employment: list) -> None:
     """ 오늘의 개발자 채용 정보 전송 """
