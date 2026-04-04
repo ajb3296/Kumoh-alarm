@@ -42,6 +42,8 @@ async def broadcast_employment(bot) -> None:
                     if isDevDuty:
                         result.append(i)
 
+            await send_employment(bot, result)
+
         await asyncio.sleep(60)
 
 async def send_employment(bot, today_employment: list) -> None:
