@@ -10,6 +10,7 @@ from bot.background.schedule import schedule
 from bot.background.broadcast_hagsigdang import broadcast_hagsigdang
 from bot.background.broadcast_dormitory import broadcast_dorm_food
 from bot.background.broadcast_faculty_cafeteria import broadcast_faculty_cafeteria
+from bot.background.broadcast_employment import broadcast_employment
 
 from bot import LOGGER, TOKEN, EXTENSIONS, BOT_NAME_TAG_VER
 
@@ -69,7 +70,8 @@ background_list = {
     "schedule": True,
     "broadcast_hagsigdang": True,
     "broadcast_faculty_cafeteria": True,
-    "broadcast_dorm_food": True
+    "broadcast_dorm_food": True,
+    "broadcast_employment": True
 }
 
 intents = discord.Intents.default()
